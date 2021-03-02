@@ -9,12 +9,13 @@ import "./LiveTickets.sol";
 
 contract Concert is Ticket {
     
-    function totalTicketsSold(string memory concertId) external view {        // returns total tickets sold to specific concertId
-        return ticketsSold;
+    function totalTicketsSold() public view returns(uint) {        // returns total tickets sold to specific concertId
+        return tickets.length;
     }
     
-    function totalTicketSales(uint ticketsSold, uint ticketPrice) external view returns(uint) {
-        return ticketsSold*ticketPrice;
+    function totalTicketSales(uint ticketsSold, uint ticketPrice) external pure returns(uint) {
+        uint totalSales = ticketsSold * ticketPrice;
+        return totalSales;
     }
     
 }
