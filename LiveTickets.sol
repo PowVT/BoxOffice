@@ -13,7 +13,7 @@ contract Ticket is Ownable {
     
     struct Concert {
         string concertId;            // Contains the date, time, physical location, band playing, ... etc.
-        address concertIdAddress;    // Smart contract address where funds are stored for selling tickets.
+        address payable concertIdAddress;    // Smart contract address where funds are stored for selling tickets.
         address concertAttendee;     // Address of the wallet buying the ticket to concert.
         uint ticketCount;            // Total count of all tickets available for the show. 
         uint ticketPrice;            // Price of a single ticket for specific concertId.
@@ -39,8 +39,7 @@ contract Ticket is Ownable {
   * @dev Main method of purchaing a ticket to a specific _concertId. Also, calls function to have ticket paid for. Increases nonce to eliminate multiple calls. Gives ticket to owner once paid for.
   */
     
-    function _buyTicket(string memory _concertId, address _concertIdAddress, address _concertAttendee, uint _ticketCount, uint _ticketPrice, uint _ticketsSold, uint _nonce) public {     // Buy ticket to specific concertId.
-        require ((msg.sender == _concertAttendee) && (_ticketsSold <= _ticketCount));        // require message sender to be the concert attendee. Ensure tickets are left to be sold.
+    function _buyTicket(string memory _concertId, address payable _concertIdAddress, address _concertAttendee, uint _ticketCount, uint _ticketPrice, uint _ticketsSold, uint _nonce) public payable {
         uint ticketId = tickets.push(Concert(_concertId, _concertIdAddress, _concertAttendee, _ticketsSold, _ticketCount, _ticketPrice, 1)) - 1;      // Add concert attendee to the tickets array.
         _payForTicket( _ticketPrice);
         ticketToOwner[ticketId] = msg.sender;
@@ -57,5 +56,5 @@ contract Ticket is Ownable {
        require(msg.sender == ticketToOwner[_ticketId]);
        _;
     }
-   
+    
 }
