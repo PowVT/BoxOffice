@@ -5,7 +5,7 @@ eth.build: Depiction of various features and how they intertwine. File: BoxOffic
 
 Using Metamask to provide a easily accessible ETH environemnt wallet, I am able to access the Ropesten testnet for all blockchain transactions through Remix.IDE code. A Infura free ETH node is used to run the eth.build web application.
 
-Remix.IDE files:
+Solidity files:
 ownable.sol;
 LiveTickets.sol;
 erc721.sol;
