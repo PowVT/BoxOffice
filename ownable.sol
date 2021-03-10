@@ -1,4 +1,5 @@
 pragma solidity >=0.4.2 <0.9.0;
+//SPDX-License-Identifier: 0BSD
 
 /**
  * @title Ownable
@@ -7,7 +8,7 @@ pragma solidity >=0.4.2 <0.9.0;
  * OpenZeppelin Solidity Library
  */
  
-contract Ownable {
+contract ownable {
     
   address private _owner;
 
